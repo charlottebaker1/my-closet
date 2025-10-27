@@ -1,0 +1,29 @@
+
+.toolbar {
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+}
+
+.toolbar > div {
+    flex:1 1 120px;
+}
+
+#closet-grid {
+    display:flex;
+    flex-wrap:wrap;
+    gap:24px;
+    justify-content:space-between;
+}
+
+@media only screen and (max-width:1000px) {
+    #closet-grid .closet-item {
+        flex-basis:calc(50% - 12px);
+    }
+}
+
+@media only screen and (max-width:540px) {
+    #closet-grid .closet-item {
+        flex-basis:100%;
+    }
+}
