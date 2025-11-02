@@ -1,13 +1,72 @@
-
-
-.contact-card h3 {
-  margin-top:0;
+.contact-wrapper {
+  max-width: 800px;
+  margin: 20px auto;
 }
 
-.fake-input {
-  margin-bottom:12px;
+.contact-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  padding: 16px;
 }
 
-.contact-side-card {
-  min-height:200px;
+.contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+}
+
+.contact-field.half {
+  width: calc(50% - 8px);
+}
+
+.contact-field.full {
+  width: 100%;
+}
+
+.contact-field label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.contact-field input,
+.contact-field select,
+.contact-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.4;
+  resize: vertical;
+}
+
+.contact-field input:focus,
+.contact-field select:focus,
+.contact-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.contact-status {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 600px) {
+  .contact-field.half {
+    width: 100%;
+  }
 }
