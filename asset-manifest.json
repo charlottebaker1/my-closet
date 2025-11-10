@@ -1,25 +1,23 @@
 {
   "files": {
-    "main.css": "/my-closet/static/css/main.f4d5e6aa.css",
-    "main.js": "/my-closet/static/js/main.433e8606.js",
+    "main.css": "/my-closet/static/css/main.40ad4c37.css",
+    "main.js": "/my-closet/static/js/main.30d57a24.js",
     "static/media/shorts.png": "/my-closet/static/media/shorts.c66de8db72e4170c6f67.png",
     "static/media/featured3.png": "/my-closet/static/media/featured3.fbf8e2a4f96707898222.png",
     "static/media/hero.png": "/my-closet/static/media/hero.33e2cf6c39b9764b78e8.png",
     "static/media/featured2.png": "/my-closet/static/media/featured2.cadc46cc7f73c82c7501.png",
     "static/media/sweatshirt.png": "/my-closet/static/media/sweatshirt.cd1b692c14f52ffa277e.png",
     "static/media/frilltop.png": "/my-closet/static/media/frilltop.e1d97585c99e9acae143.png",
-    "static/media/sweater.png": "/my-closet/static/media/sweater.f0b5eeddca20f68ad368.png",
     "static/media/featured1.png": "/my-closet/static/media/featured1.cc56cfce16f9ab8f9894.png",
-    "static/media/miniheels.png": "/my-closet/static/media/miniheels.cf07a3d6627b1fc4c974.png",
     "static/media/jeans.png": "/my-closet/static/media/jeans.6dd8f32aefdbd30b3fd7.png",
     "static/media/sneakers.png": "/my-closet/static/media/sneakers.953ec7756447e0ef2699.png",
     "static/media/logo.png": "/my-closet/static/media/logo.d16f8b96b78b1f7a9887.png",
     "index.html": "/my-closet/index.html",
-    "main.f4d5e6aa.css.map": "/my-closet/static/css/main.f4d5e6aa.css.map",
-    "main.433e8606.js.map": "/my-closet/static/js/main.433e8606.js.map"
+    "main.40ad4c37.css.map": "/my-closet/static/css/main.40ad4c37.css.map",
+    "main.30d57a24.js.map": "/my-closet/static/js/main.30d57a24.js.map"
   },
   "entrypoints": [
-    "static/css/main.f4d5e6aa.css",
-    "static/js/main.433e8606.js"
+    "static/css/main.40ad4c37.css",
+    "static/js/main.30d57a24.js"
   ]
 }
