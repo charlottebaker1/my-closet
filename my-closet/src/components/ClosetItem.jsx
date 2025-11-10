@@ -1,12 +1,13 @@
 import React from "react";
 import "../css/closetItem.css";
 
-export default function ClosetItem({ imgSrc, title }) {
+export default function ClosetItem({ item, onOpen }) {
   return (
-    <div className="closet-item">
-      <img className="closet-thumb" src={imgSrc} alt={title} />
-      <h3>{title}</h3>
-      <p><a className="btn" href="#">View / Edit Item</a></p>
+    <div className="item">
+      <button className="item-btn" onClick={() => onOpen(item)} aria-label={`View ${item.title}`}>
+        <img src={item.imgUrl} alt={item.title} />
+        <h3>{item.title}</h3>
+      </button>
     </div>
   );
 }
