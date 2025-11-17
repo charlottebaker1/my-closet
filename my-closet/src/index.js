@@ -5,6 +5,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import "./css/base.css";
 
 import Layout from "./Layout.jsx";
+import { ItemsProvider } from "./context/ItemsContext.jsx";
 
 import Home from "./pages/Home.jsx";
 import Closet from "./pages/Closet.jsx";
@@ -18,16 +19,18 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <HashRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/closet" element={<Closet />} />
-          <Route path="/create-outfit" element={<CreateOutfit />} />
-          <Route path="/lookbook" element={<Lookbook />} />
-          <Route path="/upload-item" element={<UploadItem />} />
-          <Route path="/contact" element={<Contact />} />
-        </Route>
-      </Routes>
+      <ItemsProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/closet" element={<Closet />} />
+            <Route path="/create-outfit" element={<CreateOutfit />} />
+            <Route path="/lookbook" element={<Lookbook />} />
+            <Route path="/upload-item" element={<UploadItem />} />
+            <Route path="/contact" element={<Contact />} />
+          </Route>
+        </Routes>
+      </ItemsProvider>
     </HashRouter>
   </React.StrictMode>
 );

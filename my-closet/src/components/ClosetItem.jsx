@@ -1,4 +1,3 @@
-import React from "react";
 import "../css/closetItem.css";
 
 export default function ClosetItem({ item, onOpen }) {

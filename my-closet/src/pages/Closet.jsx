@@ -1,37 +1,19 @@
-import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../css/base.css";
 import "../css/closet.css";
 import ClosetFilters from "../components/ClosetFilters.jsx";
 import ClosetGrid from "../components/ClosetGrid.jsx";
-import { API_BASE } from "../api/config";
 import Modal from "../components/Modal.jsx";
+import { useItems } from "../context/ItemsContext";
 
 export default function Closet() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState("");
+  const { items, loading, error, fetchItems } = useItems();
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    const load = async () => {
-      try {
-        setLoading(true);
-        setErr("");
-        const res = await fetch(`${API_BASE}/api/clothes`);
-        if (!res.ok) throw new Error(`API ${res.status}`);
-        const data = await res.json();
-        const normalized = data.map((it) => ({ ...it, imgUrl: `${API_BASE}${it.img}` }));
-        setItems(normalized);
-      } catch (e) {
-        console.error(e);
-        setErr("Could not load closet items.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
-  }, []);
+    if (!items) fetchItems();
+  }, [items, fetchItems]);
 
   return (
     <>
@@ -44,11 +26,13 @@ export default function Closet() {
       <hr />
 
       {loading && <p className="center muted">Loading...</p>}
-      {err && <p className="center" style={{ color: "#b85c7d" }}>{err}</p>}
-      {!loading && !err && <ClosetGrid items={items} onOpen={setSelected} />}
+      {error && <p className="center" style={{ color: "#b85c7d" }}>{error}</p>}
+      {!loading && !error && items && (
+        <ClosetGrid items={items} onOpen={setSelected} />
+      )}
 
       <div className="center" style={{ margin: "30px 0" }}>
-        <a className="btn" href="/upload-item">Add More Items</a>
+        <Link className="btn" to="/upload-item">Add More Items</Link>
       </div>
 
       <Modal open={!!selected} onClose={() => setSelected(null)}>
@@ -67,7 +51,7 @@ export default function Closet() {
               <p className="muted">Color: <strong>{selected.color}</strong></p>
               <p className="muted">Season: <strong>{selected.season}</strong></p>
               <p style={{ marginTop: 16 }}>
-                <a className="btn" href="/upload-item">View / Edit Item</a>
+                <Link className="btn" to="/upload-item">View / Edit Item</Link>
               </p>
             </div>
           </div>
@@ -76,3 +60,4 @@ export default function Closet() {
     </>
   );
 }
+

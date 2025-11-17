@@ -1,0 +1,85 @@
+
+.upload-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.upload-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  padding: 20px;
+}
+
+.upload-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
+  align-items: start;
+}
+
+.uf-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.uf-row label {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.uf-row input,
+.uf-row select,
+.uf-row textarea {
+  width: 100%;
+  height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.uf-row textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.uf-row input:focus,
+.uf-row select:focus,
+.uf-row textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.uf-row--full {
+  grid-column: 1 / -1;
+}
+
+.upload-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.form-help {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.form-msg.ok {
+  color: #2e7d32;
+  font-weight: 600;
+}
+.form-msg.err {
+  color: #b85c7d;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .upload-form { grid-template-columns: 1fr; }
+}
