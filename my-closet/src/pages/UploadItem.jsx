@@ -2,10 +2,11 @@ import { useState } from "react";
 import { API_BASE } from "../api/config";
 import "../css/base.css";
 import "../css/upload.css";
+import { useItems } from "../context/ItemsContext";
 
-const TYPES   = ["Top","Pants","Shorts","Sweatshirt","Sweater","Shoes","Dress","Skirt","Jacket","Accessory"];
+const TYPES = ["Top","Pants","Shorts","Sweatshirt","Sweater","Shoes","Dress","Skirt","Jacket","Accessory"];
 const SEASONS = ["Spring","Summer","Fall","Winter"];
-const FILENAME_PATTERN = /^[\w\-.]+\.(png|jpe?g|webp|gif)$/i; 
+const FILENAME_PATTERN = /^[\w\-.]+\.(png|jpe?g|webp|gif)$/i;
 
 const validate = (f) => {
   const errors = {};
@@ -13,19 +14,20 @@ const validate = (f) => {
     errors.title = "Title 2–80 characters.";
   if (!TYPES.includes(f.type)) errors.type = "Choose a valid type.";
   if (!SEASONS.includes(f.season)) errors.season = "Choose a valid season.";
-  if (!f.color || f.color.trim().length < 2) errors.color = "Color is required.";
+  if (!f.color || f.color.trim().length < 3) errors.color = "Color must be at least 3 characters.";
   if (!FILENAME_PATTERN.test(f.imgName || ""))
-    errors.imgName = "Use a valid image filename (e.g. glitterskirt.png).";
+    errors.imgName = "Use a valid image filename (e.g. filename.png).";
   return errors;
 };
 
 export default function UploadItem() {
+  const { addItem } = useItems();
   const [form, setForm] = useState({
     title: "",
     type: "Top",
     season: "Spring",
     color: "",
-    imgName: "",    
+    imgName: "",
   });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ kind: "idle", text: "" });
@@ -34,6 +36,7 @@ export default function UploadItem() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     const errs = validate(form);
     setErrors(errs);
     if (Object.keys(errs).length) {
@@ -43,10 +46,19 @@ export default function UploadItem() {
 
     try {
       setStatus({ kind: "loading", text: "Adding…" });
+
+      const payload = {
+        title: form.title.trim(),
+        type: form.type,
+        color: form.color.trim(),
+        season: form.season,
+        imgName: form.imgName.trim(),
+      };
+
       const res = await fetch(`${API_BASE}/api/clothes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form), 
+        body: JSON.stringify(payload),
       });
 
       const text = await res.text();
@@ -59,10 +71,10 @@ export default function UploadItem() {
         return;
       }
 
+      addItem?.(data.item);
       setStatus({ kind: "ok", text: "Item added!" });
       setForm({ title: "", type: "Top", season: "Spring", color: "", imgName: "" });
       setErrors({});
-
     } catch (err) {
       setStatus({ kind: "err", text: err.message || "Network error." });
     }
@@ -73,8 +85,7 @@ export default function UploadItem() {
       <section className="center">
         <h2>Upload Item</h2>
         <p className="muted">
-          Image files must already exist on the API under <code>/images</code>.
-          Enter just the filename (e.g., <code>glitterskirt.png</code>).
+          Image files must already exist on the API under <code>/images</code>. Enter just the filename (e.g., <code>filename.png</code>).
         </p>
       </section>
 
@@ -112,7 +123,7 @@ export default function UploadItem() {
             <div className="uf-row uf-row--full">
               <label htmlFor="imgName">Image filename</label>
               <input id="imgName" name="imgName" value={form.imgName} onChange={onChange} placeholder="clothing.png" aria-invalid={!!errors.imgName}/>
-              <span className="form-help">Case-sensitive. File must be at <code>/images/yourfile</code> on the API.</span>
+              <span className="form-help">Case-sensitive. File must be in <code>/public/images</code> on the API repo and reachable at <code>/images/yourfile</code>.</span>
               {errors.imgName && <span className="form-msg err">{errors.imgName}</span>}
             </div>
 
