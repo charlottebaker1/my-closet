@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/my-closet/static/css/main.40ad4c37.css",
-    "main.js": "/my-closet/static/js/main.30d57a24.js",
+    "main.css": "/my-closet/static/css/main.95e15b29.css",
+    "main.js": "/my-closet/static/js/main.8d43cc5f.js",
     "static/media/shorts.png": "/my-closet/static/media/shorts.c66de8db72e4170c6f67.png",
     "static/media/featured3.png": "/my-closet/static/media/featured3.fbf8e2a4f96707898222.png",
     "static/media/hero.png": "/my-closet/static/media/hero.33e2cf6c39b9764b78e8.png",
@@ -13,11 +13,11 @@
     "static/media/sneakers.png": "/my-closet/static/media/sneakers.953ec7756447e0ef2699.png",
     "static/media/logo.png": "/my-closet/static/media/logo.d16f8b96b78b1f7a9887.png",
     "index.html": "/my-closet/index.html",
-    "main.40ad4c37.css.map": "/my-closet/static/css/main.40ad4c37.css.map",
-    "main.30d57a24.js.map": "/my-closet/static/js/main.30d57a24.js.map"
+    "main.95e15b29.css.map": "/my-closet/static/css/main.95e15b29.css.map",
+    "main.8d43cc5f.js.map": "/my-closet/static/js/main.8d43cc5f.js.map"
   },
   "entrypoints": [
-    "static/css/main.40ad4c37.css",
-    "static/js/main.30d57a24.js"
+    "static/css/main.95e15b29.css",
+    "static/js/main.8d43cc5f.js"
   ]
 }
