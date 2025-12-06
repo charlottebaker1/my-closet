@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import "../css/navigation.css";
+
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);

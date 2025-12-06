@@ -9,10 +9,23 @@ export function ItemsProvider({ children }) {
   const [error, setError] = useState("");
 
   const normalize = (list) =>
-    list.map((it) => ({
-      ...it,
-      imgUrl: it.img?.startsWith?.("http") ? it.img : `${API_BASE}${it.img}`,
-    }));
+  list.map((it) => {
+    if (it.img && /^https?:\/\//i.test(it.img)) {
+      return { ...it, imgUrl: it.img };
+    }
+
+    if (it.img) {
+      const path = it.img.startsWith("/") ? it.img : `/${it.img}`;
+      return { ...it, imgUrl: `${API_BASE}${path}` };
+    }
+
+    if (it.imgName) {
+      return { ...it, imgUrl: `${API_BASE}/images/${it.imgName}` };
+    }
+
+    return { ...it, imgUrl: "" };
+  });
+
 
   const fetchItems = async () => {
     try {
